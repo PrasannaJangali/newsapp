@@ -1,25 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import React from 'react'
+import Navbar from './components/Navbar'
+import News  from './components/News';
+import{
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from 'react-router-dom';
+export default function  App  (){
+  const apikey="ce79f16ce55f4cb09b9edd142bd09d46";
+    return ( 
+      <>
+      <Router>
+      <Navbar />
+      <Switch>
+        <Route exact path="/" > <News   apikey={apikey} pagesize={9} category="general"/></Route>
+        <Route exact path="/general" > <News   apikey={apikey} pagesize={9} category="general"/></Route>
+        <Route exact path="/science" > <News   apikey={apikey} pagesize={9} category="science"/></Route>
+        <Route exact path="/entertainment" > <News   apikey={apikey} pagesize={9} category="entertainment"/></Route>
+        <Route exact path="/sports" > <News  pagesize={9} apikey={apikey} category="sports"/> </Route>
+        <Route exact path="/business"  > <News  pagesize={9} apikey={apikey} category="business"/></Route>
+      </Switch>
+      </Router>
+     </>
+    )
 }
 
-export default App;
